@@ -4,6 +4,7 @@ from PySide6.QtWidgets import QWidget
 
 from gui.pet_sprite import PetSprite
 from utils.constants import WINDOW_TITLE
+from movement.movement_controller import MovementController
 
 
 class PetWindow(QWidget):
@@ -12,6 +13,7 @@ class PetWindow(QWidget):
 
         self.setup_window()
         self.setup_pet()
+        self.movement = MovementController(self)
 
     def setup_window(self):
         self.setWindowTitle(WINDOW_TITLE)
@@ -47,3 +49,4 @@ class PetWindow(QWidget):
         super().showEvent(event)
 
         self.position_pet()
+        self.movement.start()
